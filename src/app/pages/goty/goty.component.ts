@@ -3,6 +3,9 @@ import { Game } from 'src/app/interfaces/interfaces';
 
 import { GameService } from 'src/app/services/game.service';
 
+import Swal from 'sweetalert2'
+
+
 @Component({
   selector: 'app-goty',
   templateUrl: './goty.component.html',
@@ -17,7 +20,6 @@ export class GotyComponent implements OnInit {
     this.game.cargarJuegos()
             .subscribe( () => {
               this.juegos = this.game.juegos;
-              console.log(this.juegos);
             } );
   }
 
@@ -25,8 +27,12 @@ export class GotyComponent implements OnInit {
   }
 
   votar( juego: Game){
-    console.log(juego);
     this.game.agregarVoto(juego);
+    Swal.fire({
+      title: 'Gracias',
+      text: 'Tu voto se guardo correctamente',
+      icon: 'success',
+    })
   }
 
 }
